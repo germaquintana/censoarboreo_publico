@@ -70,7 +70,7 @@
 <div class="sectiontitle"><h3>Mesa de revisión: solicitud, censo y respuesta</h3><small>Versión V1.3 · módulo local privado · 16-11-2026</small></div>
 <div class="hint warning"><strong>Acceso restringido por archivo.</strong> El sitio público no contiene solicitudes individuales. Descarga el paquete autorizado desde Drive con tu cuenta y selecciónalo aquí. El navegador lo lee <strong>solo en memoria</strong>: este sitio no lo sube a GitHub, no lo envía por red ni lo guarda. Cierra o actualiza la pestaña para descartarlo. No utilizar en equipos públicos.</div>
 <div class="cards">
-<article class="card span2"><h4>1. Cargar expedientes controlados</h4><p>Accede a la carpeta privada de Gestión Ambiental, abre el archivo <strong>MESA_PRIVADA_OIRS_CENSO_CASOS_V0_1_2026-11-16.json</strong>, descárgalo con tu cuenta y selecciónalo a continuación.</p>
+<article class="card span2"><h4>1. Cargar expedientes controlados</h4><p>Accede a la carpeta privada de Gestión Ambiental, abre el archivo <strong>MESA_PRIVADA_OIRS_CENSO_CASOS_V0_2_2026-11-16.json</strong>, descárgalo con tu cuenta y selecciónalo a continuación.</p>
 <p><a href="https://drive.google.com/file/d/14HsQ95qz9-8tOdH8TSCkdyuRP84H6f_u/view" target="_blank" rel="noopener noreferrer">Abrir paquete restringido en Google Drive ↗</a></p>
 <div class="control"><label for="case-file">Seleccionar paquete JSON descargado (no se transmite)</label><input id="case-file" type="file" accept=".json,application/json" aria-describedby="case-status"></div>
 <p id="case-status" class="sub" aria-live="polite">Sin archivo cargado. Las solicitudes individuales permanecen exclusivamente en el expediente controlado.</p>
@@ -81,7 +81,7 @@
 <div id="case-workspace" hidden>
 <div class="sectiontitle"><h3>Ficha de la solicitud seleccionada</h3><small>Todos los datos de esta ficha proceden del archivo elegido localmente</small></div>
 <div class="cards">
-<article class="card"><div class="label">Folio OIRS</div><div class="value" id="case-id">—</div><p id="case-date" class="sub"></p><p><strong>Ubicación solicitada:</strong> <span id="case-address"></span></p><span class="tag" id="case-match-type"></span></article>
+<article class="card"><div class="label">Folio OIRS</div><div class="value" id="case-id">—</div><p id="case-date" class="sub"></p><p><strong>Motivo textual detectado:</strong> <span id="case-topic"></span></p><p><strong>Ubicación solicitada:</strong> <span id="case-address"></span></p><span class="tag" id="case-match-type"></span></article>
 <article class="card"><div class="label">Candidatos censales exploratorios</div><div class="value" id="case-candidate-count">0</div><p id="case-counts" class="sub"></p><div class="hint warning">Coincidencia de dirección, no identificación ni diagnóstico de árbol.</div></article></div>
 <div class="chartgrid"><article class="card"><h4>3. Solicitud expresa y completa</h4><p class="sub">Texto aportado en el archivo OIRS, con supresión de identificadores de contacto. Consulta el original bajo custodia si necesitas verificar la literalidad íntegra.</p><div id="case-story" style="white-space:pre-wrap;max-height:370px;overflow-y:auto;overflow-wrap:anywhere;background:var(--bg);padding:14px;border-radius:9px;border:1px solid var(--border)"></div></article>
 <article class="card"><h4>4. Criterio de relación con el censo</h4><p id="case-method" style="white-space:pre-wrap"></p><div class="hint">El domicilio censal es aproximado, derivado de coordenadas. Si aparecen varios árboles, todos quedan como candidatos hasta cotejo fotográfico, número de ejemplares e inspección.</div></article></div>
@@ -131,6 +131,7 @@ function showCase(){
  workspace.hidden=false;
  el('case-id').textContent=safe(c.folio);el('case-date').textContent='Fecha consignada: '+safe(c.fecha_ingreso);
  el('case-address').textContent=safe(c.direccion_solicitud);
+ el('case-topic').textContent=safe(c.asunto_identificado_orientativo)+' (clasificación orientativa, no dictamen).';
  el('case-story').textContent=safe(c.relato);
  el('case-match-type').textContent=({'coincidencia_domiciliaria_no_validada':'Domicilio aproximado coincidente','proximidad_de_calle_no_validada':'Calle y numeración próxima','sin_candidato_en_heuristica':'Sin candidato en esta búsqueda'})[c.nivel_vinculo]||'Identidad sin verificar';
  const candidates=Array.isArray(c.arboles_candidatos)?c.arboles_candidatos:[];
