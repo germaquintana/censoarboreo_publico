@@ -1,0 +1,61 @@
+{
+  "esquema": "oirs_arbolado_agregados_publicos_v1",
+  "version_curaduria": "v1.0",
+  "corte_fuente_oirs": "2026-11-05",
+  "corte_fuente_censo": "2026-11-05",
+  "corte_paquete_privado": "2026-11-16",
+  "generado_en_chile": "2026-11-16T16:46:42-03:00",
+  "naturaleza": "Indicadores técnicos agregados; no son diagnósticos ni respuestas OIRS oficiales",
+  "fuente_publica": "Expediente institucional GA-T-2026-0074; datos originales restringidos",
+  "criterio_relacion": "Misma calle normalizada, diferencia absoluta de numeración ≤5, sin asociación por calle sola",
+  "universo": {
+    "oirs": 300,
+    "registros_censales": 25957,
+    "candidatos_censales_orientativos": 691,
+    "oirs_con_alguna_candidatura": 146,
+    "oirs_sin_candidatura_o_direccion_utilizable": 154
+  },
+  "grupos": [
+    {
+      "codigo": "misma_numeracion",
+      "etiqueta": "Misma numeración",
+      "cantidad": 93,
+      "nota": "Misma calle normalizada y numeración coincidente; identidad del ejemplar sin confirmar"
+    },
+    {
+      "codigo": "proximidad_pm5",
+      "etiqueta": "Numeración próxima (±5)",
+      "cantidad": 53,
+      "nota": "Misma calle normalizada y diferencia entre 1 y 5 números; identificación pendiente"
+    },
+    {
+      "codigo": "sin_candidato_pm5",
+      "etiqueta": "Sin coincidencia próxima",
+      "cantidad": 122,
+      "nota": "Calle y numeración interpretables; ningún árbol censado dentro de ±5"
+    },
+    {
+      "codigo": "sin_direccion_interpretable",
+      "etiqueta": "Dirección pendiente de revisión",
+      "cantidad": 32,
+      "nota": "Datos de dirección insuficientes para aplicar la regla de forma fiable"
+    }
+  ],
+  "control_respuestas": {
+    "portal_estado_acreditado_en_paquete": 0,
+    "evaluaciones_actuales_acreditadas_en_paquete": 0,
+    "respuestas_listas_para_emision_acreditadas": 0
+  },
+  "limites": [
+    "Las direcciones del censo fueron estimadas por coordenadas y pueden contener errores.",
+    "Una coincidencia de numeración no acredita que el árbol sea el solicitado.",
+    "Las cifras de verificación 0 reflejan la falta de evidencia en este paquete, no la ausencia de actuaciones municipales.",
+    "No hay expediente individual ni contacto de vecinos en esta publicación."
+  ],
+  "actualizacion": {
+    "tipo": "instantanea_curada_versionada",
+    "flujo": "Los ejecutores autorizados actualizan el derivado tras cotejar fuente, QA y permisos. No es conexión en tiempo real a Drive.",
+    "cadencia_automatizada_acreditada": false,
+    "requiere_interaccion_del_visitante": false
+  }
+}
