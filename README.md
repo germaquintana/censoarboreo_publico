@@ -1,5 +1,9 @@
 # Observatorio de Arbolado Urbano y solicitudes OIRS — Recoleta
 
+> **Abrir el dashboard en la web (versión vigente):** [Observatorio de Arbolado Urbano — Recoleta](https://germaquintana.github.io/censoarboreo_publico/). Esta URL es estable y se mantiene entre iteraciones, incluso preliminares. El enlace a `index.html` en GitHub es solo código fuente, no el visualizador.
+>
+> **Publicación verificada en GitHub Actions:** [pages build and deployment #3](https://github.com/germaquintana/censoarboreo_publico/actions/runs/43873413584) terminó con éxito el 16-11-2026; los logs de `deploy` confirmaron esta URL para V1.1. **Prueba de acceso externo:** no completada desde el visor de ChatGPT por bloqueo de acceso a `github.io`; esto no equivale a un error demostrado del sitio.
+
 **Visualizador público exploratorio** de indicadores agregados, preparado con antecedentes del trabajo técnico de Gestión Ambiental. No constituye una publicación oficial de respuestas OIRS, un diagnóstico individual ni una recepción contractual del censo.
 
 ## Alcance
@@ -23,7 +27,7 @@ Solo se publica el visualizador estático con estadísticas **agregadas**. El re
 ## Cómo abrirlo
 
 - Visualizador: [`index.html`](index.html), sin dependencias externas ni conexiones a APIs.
-- Publicación mediante GitHub Pages: **Settings → Pages → Deploy from a branch → `main` → `/(root)` → Save**. La disponibilidad de la URL pública debe comprobarse después de activar Pages.
+- Publicación mediante GitHub Pages: el despliegue de `main` se confirmó exitoso el 16-11-2026 ([run #43873413584](https://github.com/germaquintana/censoarboreo_publico/actions/runs/43873413584)); el enlace permanente del panel es https://germaquintana.github.io/censoarboreo_publico/. Ante una versión nueva, verificar nuevamente el despliegue y acceso web.
 - Fecha de la primera versión: **10 de noviembre de 2026**. Actualización de datos: manual; no se presenta como monitoreo en tiempo real.
 
 ## Control del producto
