@@ -31,3 +31,14 @@ Solo se publica el visualizador estático con estadísticas **agregadas**. El re
 Desarrollo técnico de Gestión Ambiental, DIMAO Recoleta, como apoyo analítico a la Sección de Ornato. Seguimiento de trabajo en el expediente institucional `GA-T-2026-0074` (acceso restringido). Ornato y las unidades competentes conservan la atribución de validar inspecciones, riesgos e intervenciones.
 
 **QA de V1:** se probaron en Chromium la navegación, selección de las seis rutas, visualización de categorías/UV, CSV agregado y renderización de escritorio y móvil. No se acredita con ello validación técnica de expedientes individuales ni habilitación efectiva de GitHub Pages.
+
+
+## Revisión V1.1 — 16-11-2026
+
+El archivo [`index.html`](index.html) incorpora navegación por seis secciones con enlaces de ancla, filtro de las seis rutas OIRS, exportación CSV agregada, diseño adaptativo y un panel de **fuentes y pendientes**. La sección territorial mantiene explícito que no existe cartografía UV validada ni cruce geográfico caso a caso autorizado. Los cortes de junio (22.530), julio (25.128) y base con direcciones (25.957) se muestran por separado; las diferencias no acreditan plantaciones, talas, cambios de riesgo ni cumplimiento contractual.
+
+- **Commit de V1.1:** `6e58512743383613ee54b7996bae4deff0b7b23f`.
+- **QA:** sintaxis JavaScript válida; seis secciones, navegación y estado activo probados; filtro de categorías, exportación CSV (23 filas incl. encabezado), escritorio y móvil verificados en Chromium sin errores de página.
+- **Publicación:** el código de V1.1 está en `main`; GitHub Pages debe habilitarse/verificarse de manera independiente. No presentar su URL como activa sin prueba real.
+- **Privacidad:** solo agregados, sin nombres, RUT, teléfonos, correos de contacto, direcciones específicas, coordenadas de ejemplares ni folios OIRS enlazables.
+- **Validaciones humanas:** Ornato confirma diagnósticos e inspecciones; el estado de 0/300 **verificado en la matriz** no significa que no existan actuaciones municipales.
