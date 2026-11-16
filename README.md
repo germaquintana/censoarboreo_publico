@@ -46,3 +46,12 @@ El archivo [`index.html`](index.html) incorpora navegación por seis secciones c
 - **Publicación:** el código de V1.1 está en `main`; GitHub Pages debe habilitarse/verificarse de manera independiente. No presentar su URL como activa sin prueba real.
 - **Privacidad:** solo agregados, sin nombres, RUT, teléfonos, correos de contacto, direcciones específicas, coordenadas de ejemplares ni folios OIRS enlazables.
 - **Validaciones humanas:** Ornato confirma diagnósticos e inspecciones; el estado de 0/300 **verificado en la matriz** no significa que no existan actuaciones municipales.
+
+
+## V1.2 — Gestión OIRS y filtros históricos (16-11-2026)
+
+El observatorio se reorienta hacia la **preparación verificable de respuestas OIRS**, manteniendo el enlace web permanente [abrir dashboard](https://germaquintana.github.io/censoarboreo_publico/). La nueva pestaña «Gestión y respuestas» incluye el flujo de validación (portal, ejemplar, evaluación, orden/ruta, aprobación y acuse) y **distingue dos cohortes**: las 300 OIRS de noviembre y 15 registros históricos de julio **sin coincidencia de folio entre sí**. Estos últimos consisten en 13 con etiqueta documental `EVALUADO` y 2 `EN_RUTA`; 12 de los 15 figuran en una hoja de ruta histórica. **Ninguno de esos registros prueba emisión oficial ni ejecución vigente**. La cifra de respuestas listas/acreditadas permanece en 0 hasta verificar individualmente portal, fuentes y aprobación.
+
+Se agregan filtros interactivos para **categoría de riesgo del corte junio** (191 alto, 1.029 medio, 1.571 bajo, 19.739 etiqueta estable) y cinco UV que reúnen 85 registros históricos de riesgo alto. No son filtros por árbol individual ni certifican condición actual. Especies, DAP, altura, fecha de inspección, actuaciones y cartografía por árbol siguen dependiendo de una fuente homogénea validada y permiso para un derivado apto para publicación. Sin microdatos OIRS, personas o domicilios en GitHub Pages.
+
+**Despliegue:** commit de HTML `5de6fd882c0dfb5d93a7d16dcb20d8c96ba1977c`; [GitHub Pages Actions #43885554803](https://github.com/germaquintana/censoarboreo_publico/actions/runs/43885554803) en `success`, log de `deploy` confirmando `https://germaquintana.github.io/censoarboreo_publico/`. Prueba externa HTTP/navegador desde esta sesión no lograda; estado `DESPLIEGUE_CONFIRMADO_ACCESO_EXTERNO_NO_VERIFICADO`. Código, navegación y controles de interfaz sujetos a QA adicional tras la publicación; no atribuir funcionalidades que no se hayan probado en el sitio.
