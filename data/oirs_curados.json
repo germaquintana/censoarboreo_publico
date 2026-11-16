@@ -1,6 +1,6 @@
 {
   "esquema": "oirs_arbolado_agregados_publicos_v1",
-  "version_curaduria": "v1.0",
+  "version_curaduria": "v2.0",
   "corte_fuente_oirs": "2026-11-05",
   "corte_fuente_censo": "2026-11-05",
   "corte_paquete_privado": "2026-11-16",
@@ -50,12 +50,38 @@
     "Las direcciones del censo fueron estimadas por coordenadas y pueden contener errores.",
     "Una coincidencia de numeración no acredita que el árbol sea el solicitado.",
     "Las cifras de verificación 0 reflejan la falta de evidencia en este paquete, no la ausencia de actuaciones municipales.",
-    "No hay expediente individual ni contacto de vecinos en esta publicación."
+    "No hay expediente individual ni contacto de vecinos en esta publicación.",
+    "La condición estructural registrada es histórica y no constituye una evaluación actual, prescripción de poda/tala ni prueba de compatibilidad con el plan de manejo comunal."
   ],
   "actualizacion": {
     "tipo": "instantanea_curada_versionada",
     "flujo": "Los ejecutores autorizados actualizan el derivado tras cotejar fuente, QA y permisos. No es conexión en tiempo real a Drive.",
     "cadencia_automatizada_acreditada": false,
     "requiere_interaccion_del_visitante": false
+  },
+  "estados_estructurales_candidatos": {
+    "unidad": "Registros censales candidatos vinculados a OIRS; puede repetirse un árbol en varias solicitudes, no son ejemplares únicos.",
+    "grupos": [
+      {
+        "estado": "BUENO",
+        "cantidad": 288
+      },
+      {
+        "estado": "ACEPTABLE",
+        "cantidad": 204
+      },
+      {
+        "estado": "MALO",
+        "cantidad": 26
+      },
+      {
+        "estado": "URGENCIA",
+        "cantidad": 4
+      },
+      {
+        "estado": "SIN DATO",
+        "cantidad": 169
+      }
+    ]
   }
 }
