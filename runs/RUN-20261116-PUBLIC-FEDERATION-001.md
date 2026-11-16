@@ -1,0 +1,2 @@
+# RUN-20261116-PUBLIC-FEDERATION-001
+Inicio/término 2026-11-16T11:20:48-03:00 Chile. Repo germaquintana/censoarboreo_publico, fuente guía pública de concurrencia, estado de publicación propio. Cambio AGENTS.md SHA/commit 9f7b3ca097793a69d8f9e60e0666067fb7347da0. Verificación: readback GitHub. No datos de origen, dashboards ni permisos modificados. Resultado ADOPCION_DOCUMENTAL; pendiente verificar ciclo real y enlaces web si el usuario lo solicita.
