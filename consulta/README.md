@@ -1,3 +1,5 @@
+> **ESTADO ACTUAL — 19-11-2026: PROTOTIPO V3 RETIRADO DE LA RUTA PRINCIPAL.** Esta documentación queda para trazabilidad; no configura obligaciones ni siguientes pasos de GA-T-2026-0074. La URL /consulta/ redirige al [dashboard público principal](https://germaquintana.github.io/censoarboreo_publico/). La [mesa OIRS restringida existente](https://docs.google.com/spreadsheets/d/1o74RdNXvu5wOoSrZlcTNHV_LaosLeKdV0iHSo7ClQ-A/edit#gid=1770532750) mantiene la revisión individual bajo autenticación institucional. La prioridad vigente es curar datos en el repositorio canónico privado y publicar solo derivados aprobados en el dashboard. Worker/R2/Cloudflare/IdP/host privado no se desplegarán por este proyecto sin una nueva decisión expresa; no continuar el QA de V3 como condición para el dashboard.
+
 # Visor de OIRS × Censo Arbóreo — implementación GitHub-first V3
 
 **Fecha de iteración:** 19-11-2026 (Chile). **Alcance autorizado:** desarrollar directamente en GitHub, sin Apps Script, una interfaz integrada de **solo consulta**, con una fuente interna de expedientes y sin persistencia de las acciones del usuario.
