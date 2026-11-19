@@ -1,5 +1,18 @@
 # Observatorio de Arbolado Urbano y solicitudes OIRS — Recoleta
 
+## Arquitectura actual y producto principal — 19-11-2026
+
+**Dashboard público:** https://germaquintana.github.io/censoarboreo_publico/ — pantalla estática de análisis y filtros; consume sólo [indicadores curados](data/oirs_curados.json). **Mesa de casos restringida ya disponible:** https://docs.google.com/spreadsheets/d/1o74RdNXvu5wOoSrZlcTNHV_LaosLeKdV0iHSo7ClQ-A/edit#gid=1770532750 — requiere autorización institucional; no se replica en el dashboard público.
+
+**Arquitectura de dos repositorios, igual que Derechos de Aseo:** (1) [repositorio privado institucional](https://github.com/germaquintana/Gestionambientaltrabajo_recoleta) = modelo, scripts de cruce/validación, GA-T-2026-0074, versiones, RUN y control de publicación; documentos fuente con personas y domicilios permanecen en Drive/Sheets controlados, no en GitHub. (2) [este repositorio público](https://github.com/germaquintana/censoarboreo_publico) = solo agregados autorizados y dashboard en GitHub Pages. No hay sincronización automática continua acreditada.
+
+**Decisión:** las rutas consulta/ y backend/ V3, Worker/R2/Access, Apps Script/OAuth y flujos de despliegue privado son **prototipos históricos no prioritarios y no habilitados**; no iniciar, reconfigurar ni bloquear el trabajo por su QA. El siguiente desarrollo se centra en mejorar dashboard, calidad de datos, cruce verificable con el censo y actualización segura del JSON agregado. Una ficha con nombre, RUT, dirección y relato **no puede incorporarse a Pages**, ni estar en un repo público u otro hosting sin autorización y control de acceso efectivo. La mesa Sheets existente mantiene esa consulta restringida por separado.
+
+**Criterio de aceptación:** conservar el enlace web del dashboard; usar el corte data/oirs_curados.json con cuadratura y esquema; no copiar microdatos; mantener un único indicador de versión/corte y no certificar actuaciones ni respuestas OIRS sin revisión de Ornato. Los apartados históricos más abajo documentan prototipos previos y no prevalecen sobre esta decisión.
+
+---
+
+
 > **PRODUCTO PRINCIPAL V2 — Rediseño de una sola página:** [OIRS × Censo Arbóreo: mesa de respuesta ciudadana](https://germaquintana.github.io/censoarboreo_publico/). Sustituye la navegación histórica de múltiples pestañas. [La antigua ruta `mesa.html`](https://germaquintana.github.io/censoarboreo_publico/mesa.html) redirige a esta URL permanente.
 >
 > **Mesa individual privada:** [abrir ficha OIRS interna en Google Sheets](https://docs.google.com/spreadsheets/d/1o74RdNXvu5wOoSrZlcTNHV_LaosLeKdV0iHSo7ClQ-A/edit#gid=1770532750) — acceso limitado a la cuenta institucional propietaria. Incluye **300 solicitudes originales completas** y **691 registros arbóreos candidatos ±5**, con validación árbol por árbol y un borrador condicionado. La página pública solo enlaza la mesa, **no almacena ni carga sus datos personales**. No se requiere configurar un OAuth propio ni seleccionar archivos locales.
