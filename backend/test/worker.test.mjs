@@ -17,13 +17,20 @@ test('validador exige regla ±5, unicidad e ID OIRS admisible',()=>{
 });
 test('ningun expediente sale sin JWT incluso si R2 contiene dataset',async()=>{
   const env={OIRS_R2:{get:async()=>({json:async()=>sample()})}};
-  for(const path of ['/consulta/','/consulta/api/v1/session','/consulta/api/v1/oirs','/consulta/api/v1/oirs/101','/data/oirs_curados.json']){
+  for(const path of ['/consulta/','/consulta/api/v1/session','/consulta/api/v1/oirs','/consulta/api/v1/oirs/101']){
     const resp=await worker.fetch(new Request('https://private.example'+path),env);
     assert.equal(resp.status,403,path);
     assert.match(resp.headers.get('cache-control')||'',/no-store/);
     const content=await resp.text();
     assert.doesNotMatch(content,/Relato ficticio/);
   }
+});
+test('el resumen C0 es público, pero no contiene expedientes',async()=>{
+  const resp=await worker.fetch(new Request('https://private.example/data/oirs_curados.json'),{});
+  assert.equal(resp.status,200);
+  const data=await resp.json();
+  assert.equal(data.universo.oirs,300);
+  assert.equal(Object.hasOwn(data,'cases'),false);
 });
 test('ruta de escritura denegada',async()=>{
   const r=await worker.fetch(new Request('https://private.example/consulta/api/v1/oirs/101',{method:'POST'}),{});
