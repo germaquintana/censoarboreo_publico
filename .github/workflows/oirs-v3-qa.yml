@@ -1,0 +1,35 @@
+name: OIRS V3 - QA sintético sin despliegue
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'backend/**'
+      - 'consulta/**'
+      - '.github/workflows/oirs-v3-qa.yml'
+  pull_request:
+    paths:
+      - 'backend/**'
+      - 'consulta/**'
+      - '.github/workflows/oirs-v3-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar dependencias sin scripts
+        run: npm install --ignore-scripts --no-audit --no-fund
+      - name: Sintaxis backend y frontend
+        run: |
+          node --check worker.js
+          node --check ../consulta/app.js
+      - name: Pruebas Node sintéticas
+        run: npm test
