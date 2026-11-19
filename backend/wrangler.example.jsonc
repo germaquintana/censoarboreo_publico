@@ -1,0 +1,22 @@
+{
+  // COPIAR A wrangler.jsonc solo tras autorización institucional del hosting.
+  // No publicar JSON nominativos como assets, secrets, variables o artefactos GitHub.
+  "name": "recoleta-oirs-privado",
+  "main": "./worker.js",
+  "compatibility_date": "2026-11-19",
+  "assets": {
+    "directory": "../consulta",
+    "binding": "ASSETS",
+    "run_worker_first": true
+  },
+  "r2_buckets": [
+    {
+      "binding": "OIRS_R2",
+      "bucket_name": "REEMPLAZAR_POR_BUCKET_PRIVADO_AUTORIZADO"
+    }
+  ]
+  // Variables obligatorias de producción (NO valores reales aquí):
+  // CF_ACCESS_ISSUER=https://EQUIPO.cloudflareaccess.com
+  // CF_ACCESS_AUD=audience-tag-de-la-aplicacion-Access
+  // ALLOWED_EMAILS=lista explicita de correos institucionales autorizados
+}
