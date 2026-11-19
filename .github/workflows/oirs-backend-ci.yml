@@ -1,0 +1,27 @@
+name: OIRS privado - pruebas de backend (sin datos privados)
+on:
+  push:
+    paths:
+      - 'backend/**'
+      - 'data/oirs_curados.json'
+      - '.github/workflows/oirs-backend-ci.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Dependencias
+        run: npm install --ignore-scripts
+      - name: Validación sintáctica
+        run: npm run check
+      - name: Pruebas sintéticas, sin PII
+        run: npm test
