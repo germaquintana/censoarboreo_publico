@@ -1,5 +1,5 @@
 import { createRemoteJWKSet, jwtVerify } from 'jose';
-import publicSummary from '../data/oirs_curados.json';
+import publicSummary from '../data/oirs_curados.json' with { type: 'json' };
 
 const secureHeaders={
   'Cache-Control':'private, no-store, max-age=0',
@@ -25,7 +25,7 @@ async function identity(request,env){
     return email&&allowlist.includes(email)?{email}:null;
   }catch{return null}
 }
-function validDataset(data){
+export function validDataset(data){
   if(!data||data.schema!=='oirs_privadas_v3'||!Array.isArray(data.cases)||data.cases.length<1||data.cases.length>10000)return false;
   const ids=new Set();
   for(const item of data.cases){
