@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import worker, {validDataset} from '../worker.js';
+import {generateKeyPair, exportJWK, SignJWT} from 'jose';
 
 const sample=()=>({
   schema:'oirs_privadas_v3',source_cut:'2026-11-05',
@@ -39,4 +40,33 @@ test('ruta de escritura denegada',async()=>{
 test('sin configuración de identidad falla cerrado',async()=>{
   const r=await worker.fetch(new Request('https://private.example/consulta/api/v1/session',{headers:{'Cf-Access-Jwt-Assertion':'no-verificado'}}),{CF_ACCESS_ISSUER:'https://team.cloudflareaccess.com',CF_ACCESS_AUD:'aud',ALLOWED_EMAILS:'gestionambiental@recoleta.cl'});
   assert.equal(r.status,403);
+});
+
+test('rechaza distancias ausentes, cadenas, decimales y valores no finitos',()=>{
+  for(const distance of [undefined,null,'', '0', '5', 1.5, NaN, Infinity]){
+    const data=sample();data.cases[0].trees[0].distance=distance;
+    assert.equal(validDataset(data),false,String(distance));
+  }
+  for(const distance of [-5,0,5]){
+    const data=sample();data.cases[0].trees[0].distance=distance;
+    assert.equal(validDataset(data),true,String(distance));
+  }
+});
+test('contrato de consulta: token firmado y allowlist, lista y detalle con/sin candidatos',async()=>{
+  const {publicKey,privateKey}=await generateKeyPair('RS256');
+  const jwk=await exportJWK(publicKey);jwk.kid='test-key';jwk.alg='RS256';jwk.use='sig';
+  const issuer='https://recoleta-test.cloudflareaccess.com',aud='aud-ficticia';
+  const originalFetch=globalThis.fetch;
+  globalThis.fetch=async()=>new Response(JSON.stringify({keys:[jwk]}),{headers:{'content-type':'application/json'}});
+  try{
+    const sign=email=>new SignJWT({email}).setProtectedHeader({alg:'RS256',kid:'test-key'}).setIssuer(issuer).setAudience(aud).setIssuedAt().setExpirationTime('5m').sign(privateKey);
+    const env={CF_ACCESS_ISSUER:issuer,CF_ACCESS_AUD:aud,ALLOWED_EMAILS:'autorizado@example.invalid',OIRS_R2:{get:async()=>({json:async()=>sample()})}};
+    const request=(path,token)=>worker.fetch(new Request('https://private.example'+path,{headers:{'Cf-Access-Jwt-Assertion':token}}),env);
+    const token=await sign('autorizado@example.invalid');
+    let r=await request('/consulta/api/v1/session',token);assert.equal(r.status,200);assert.equal((await r.json()).authorized,true);
+    r=await request('/consulta/api/v1/oirs?search=PRUEBA',token);assert.equal(r.status,200);assert.equal((await r.json()).total,2);
+    r=await request('/consulta/api/v1/oirs/101',token);assert.equal(r.status,200);assert.equal((await r.json()).trees.length,1);
+    r=await request('/consulta/api/v1/oirs/102',token);assert.equal(r.status,200);assert.equal((await r.json()).trees.length,0);
+    r=await request('/consulta/api/v1/oirs/101',await sign('noautorizado@example.invalid'));assert.equal(r.status,403);
+  }finally{globalThis.fetch=originalFetch}
 });
