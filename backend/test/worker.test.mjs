@@ -70,3 +70,10 @@ test('contrato de consulta: token firmado y allowlist, lista y detalle con/sin c
     r=await request('/consulta/api/v1/oirs/101',await sign('noautorizado@example.invalid'));assert.equal(r.status,403);
   }finally{globalThis.fetch=originalFetch}
 });
+
+test('dataset rechaza candidato nulo y URL malformada retorna 400',async()=>{
+ const d=sample();d.cases[0].trees=[null];assert.equal(validDataset(d),false);
+ const env={CF_ACCESS_ISSUER:'https://test.cloudflareaccess.com',CF_ACCESS_AUD:'aud',ALLOWED_EMAILS:'test@example.invalid'};
+ const r=await worker.fetch(new Request('https://private.example/consulta/api/v1/oirs/%E0%A4%A'),env);
+ assert.equal(r.status,403,'sin JWT siempre se deniega antes de analizar folio');
+});
