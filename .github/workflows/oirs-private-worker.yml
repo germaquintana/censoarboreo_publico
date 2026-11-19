@@ -1,0 +1,40 @@
+name: OIRS V3 - backend privado (deploy autorizado)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: oirs-private-worker-deploy
+  cancel-in-progress: false
+jobs:
+  deploy:
+    # Deploy explicitamente manual, solo con entorno protegido y aprobación humana.
+    runs-on: ubuntu-latest
+    environment: oirs-private-approved
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar dependencias
+        run: npm install --ignore-scripts
+      - name: QA codigo
+        run: npm test && npm run check
+      - name: Comprobar configuración aprobada
+        env:
+          PRIVATE_WORKER_CONFIG: ${{ secrets.PRIVATE_WORKER_CONFIG }}
+        run: |
+          test -n "$PRIVATE_WORKER_CONFIG"
+          printf '%s' "$PRIVATE_WORKER_CONFIG" > wrangler.jsonc
+          node -e "const fs=require('fs'); const s=fs.readFileSync('wrangler.jsonc','utf8'); if(!s.includes('OIRS_R2')||s.includes('REEMPLAZAR_POR_BUCKET')) process.exit(1)"
+      - name: Deploy Cloudflare Worker (requiere aprobación institucional)
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          test -n "$CLOUDFLARE_API_TOKEN"
+          test -n "$CLOUDFLARE_ACCOUNT_ID"
+          npx wrangler deploy --config wrangler.jsonc
