@@ -1,0 +1,12 @@
+node_modules/
+.wrangler/
+wrangler.jsonc
+*.private.json
+*.sensitive.json
+.env
+.env.*
+!*.example
+!.env.example
+r2data/
+secrets/
+coverage/
