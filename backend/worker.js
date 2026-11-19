@@ -57,11 +57,12 @@ export default {
     const url=new URL(request.url);
     const path=url.pathname;
     if(path==='/healthz')return json({status:'service_configured',publicData:false});
+    // Estos indicadores ya son públicos en GitHub Pages. No contienen PII.
+    if(path==='/data/oirs_curados.json')return json(publicSummary);
     if(!path.startsWith('/consulta/')&&path!=='/data/oirs_curados.json')return json({error:'no_encontrado'},404);
     // Cloudflare Access protects ALL private pages and APIs, not only /api.
     const user=await identity(request,env);
     if(!user)return json({error:'acceso_denegado'},403);
-    if(path==='/data/oirs_curados.json')return json(publicSummary);
     if(path==='/consulta/api/v1/session')return json({authenticated:true,authorized:true,mode:'SOLO_CONSULTA'});
     if(path==='/consulta/api/v1/oirs'||path.startsWith('/consulta/api/v1/oirs/')){
       const data=await loadCases(env).catch(()=>null);
