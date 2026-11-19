@@ -33,7 +33,7 @@ export function validDataset(data){
     if(ids.has(String(item.case.folio)))return false;
     ids.add(String(item.case.folio));
     for(const tree of item.trees){
-      if(typeof tree.distance!=='number'||!Number.isInteger(tree.distance)||Math.abs(tree.distance)>5)return false;
+      if(!tree||typeof tree.distance!=='number'||!Number.isInteger(tree.distance)||Math.abs(tree.distance)>5)return false;
     }
   }
   return true;
@@ -80,7 +80,7 @@ export default {
         });
         return json({total:cases.length,items:cases.slice(offset,offset+limit).map(toList)});
       }
-      const folio=decodeURIComponent(path.slice('/consulta/api/v1/oirs/'.length));
+      let folio;try{folio=decodeURIComponent(path.slice('/consulta/api/v1/oirs/'.length))}catch{return json({error:'folio_invalido'},400)}
       if(!/^[0-9]{1,12}$/.test(folio))return json({error:'folio_invalido'},400);
       const item=data.cases.find(x=>String(x.case.folio)===folio);
       return item?json({case:item.case,trees:item.trees,cutoff:data.source_cut||null}):json({error:'caso_no_encontrado'},404);
