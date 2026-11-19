@@ -29,11 +29,11 @@ export function validDataset(data){
   if(!data||data.schema!=='oirs_privadas_v3'||!Array.isArray(data.cases)||data.cases.length<1||data.cases.length>10000)return false;
   const ids=new Set();
   for(const item of data.cases){
-    if(!item||!/^[0-9]{1,12}$/.test(String(item.case?.folio||''))||!Array.isArray(item.trees))return false;
+    if(!item||typeof item.case?.folio!=='string'||!/^[0-9]{1,12}$/.test(item.case.folio)||!Array.isArray(item.trees))return false;
     if(ids.has(String(item.case.folio)))return false;
     ids.add(String(item.case.folio));
     for(const tree of item.trees){
-      if(!Number.isFinite(Number(tree.distance))||Math.abs(Number(tree.distance))>5)return false;
+      if(typeof tree.distance!=='number'||!Number.isInteger(tree.distance)||Math.abs(tree.distance)>5)return false;
     }
   }
   return true;
