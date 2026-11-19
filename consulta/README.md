@@ -59,3 +59,13 @@ GET /consulta/api/v1/oirs/{folio}
 4. Enlazar acceso privado autenticado desde observatorio público conservando datos agregados allí.
 
 **Bloqueo institucional concurrente (19-11-2026):** el repositorio `Gestionambientaltrabajo_recoleta` tenía `run_lock.active=true` de otra conversación (mesa olas de calor). En esta iteración no se escribió en dicho repositorio, no se creó ni alteró GA-T/estado/RUN institucional y no se liberó el lock ajeno. Esta documentación vive en el repositorio público del visualizador, y su reconciliación en GA-T-0074 debe esperar a la liberación del lock.
+
+
+## Implementación backend GitHub-first preparada — 19-11-2026
+
+- [Worker de API privada](../backend/worker.js) escrito en GitHub, validación de JWT firmados Cloudflare Access con issuer/audience/allowlist; depósito R2 privado `oirs-v3.json` **no habilitado** hasta evaluación/permiso institucional.
+- [Configuración ejemplo](../backend/wrangler.example.jsonc) y [workflow manual protegido](../.github/workflows/oirs-private-worker.yml). Sin secretos ni datos personales en repos.
+- [Pruebas de backend](https://github.com/germaquintana/censoarboreo_publico/actions/runs/44546587388) PASS con datos sintéticos. Verificador de dataset rechaza folios duplicados, ID inválidos y distancias mayores a ±5; endpoints privados 403 sin JWT válido.
+- El Worker propuesto **puede servir la interfaz y API en el mismo origen bajo protección Access** cuando haya hosting aprobado. La URL de GitHub Pages sigue pública y no proporciona expedientes nominativos. No configurar OAuth ni App Script en el navegador.
+- La autoridad y el exportador interno que reúne OIRS originales con candidatos están documentados en [expediente institucional GA-T-0074](https://github.com/germaquintana/Gestionambientaltrabajo_recoleta/blob/main/02_PRODUCTOS/CENSO_ARBOREO_OIRS_CURA/GITHUB_FIRST_BACKEND_PRIVADO_V1.md).
+- **Estado:** backend codificado y probado con fixtures; **no desplegado**, sin fuente R2 real ni URL privada de consulta. No presentar como funcional en producción.
