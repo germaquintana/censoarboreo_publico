@@ -1,16 +1,7 @@
-name: OIRS V3 - QA sintético sin despliegue
+# Archivo QA histórico del prototipo privado V3; no forma parte del flujo principal de publicación del dashboard.
+# Solo ejecución manual por decisión técnica expresa; no despliega el Worker ni modifica datos.
+name: LEGACY OIRS V3 - QA sintético manual sin despliegue
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'backend/**'
-      - 'consulta/**'
-      - '.github/workflows/oirs-v3-qa.yml'
-  pull_request:
-    paths:
-      - 'backend/**'
-      - 'consulta/**'
-      - '.github/workflows/oirs-v3-qa.yml'
   workflow_dispatch:
 permissions:
   contents: read
