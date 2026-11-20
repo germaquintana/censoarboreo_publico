@@ -2,6 +2,13 @@
 
 ## Corte completo del 16-11-2026 y nuevas vistas (20-11-2026)
 
+### QA funcional del dashboard — 20-11-2026 (corte vigente 16-11-2026)
+
+- **Producto corregido:** [`index.html`](index.html), commit [`bf79077b`](https://github.com/germaquintana/censoarboreo_publico/commit/bf79077b1e08347c2e18fd7badabba4c92097ea3): en la distribución apilada de calidad OIRS, se sustituyeron anchos `width = porcentaje` + `gap: 2px` + `flex-shrink:0` (que podían desbordar 100 % y recortar el segmento final) por pesos `flex-grow = cantidad` dentro del mismo contenedor. No se alteraron cifras ni reglas de clasificación.
+- **QA 22/22 PASS:** se ejecutó JavaScript del HTML actual con DOM/fetch simulados, usando exactamente el JSON público de corte 16-11. Se comprobó: carga, corte, KPIs 300/25.957/691, tres rutas 32/122/146, señales 30/169, cuatro segmentos de peso total 300, leyenda, filtros, barras de estados, clic sobre segmento, sincronización con leyenda y filtros, desplazamiento, restauración a «Todas», disponibilidad del CSV y sus enlaces, referencias a mesa restringida y media queries de adaptación. Esta prueba **no** corresponde a Chromium/Playwright ni a un navegador E2E real.
+- **Fuente constante:** [`data/oirs_curados.json`](data/oirs_curados.json) con corte 16-11-2026, sin nuevas entregas ni edición. El CSV [`resumen_agregado_oirs_censo_2026-11-16.csv`](data/resumen_agregado_oirs_censo_2026-11-16.csv) permanece sin cambios.
+- **Limitación:** GitHub `main` y readback acreditados, pero el acceso HTTP a `github.io` y a sus recursos siguió inaccesible para las herramientas disponibles. **No declarar despliegue ni visualización E2E confirmados** basándose solo en el commit.
+
 **Decisión del responsable:** los datos disponibles al 16-11-2026 son **el conjunto completo del reporte vigente**. No buscar ni inventar entregas adicionales para declararlo finalizado. Si en el futuro llegan datos de OIRS, censo, inspecciones o actuaciones, incorporarlos como **otro corte versionado**, tras validación de fuentes, permisos y agregados. No se ha anunciado una fecha de nueva entrega.
 
 **Producto entregado desde los agregados existentes:** [dashboard](https://germaquintana.github.io/censoarboreo_publico/) con sección de calidad del cruce; rutas de revisión metodológica para 32 OIRS con dirección no interpretable, 122 sin candidato de árbol bajo regla ±5, y 146 con uno o más candidatos pendientes de confirmación. Estas tres clases suman 300 y **no** implican tareas asignadas, inspecciones ni autorizaciones. Adicionalmente, el censo presenta 30 **apariciones** de candidatos con condición histórica «MALO/URGENCIA» y 169 apariciones sin condición informada, ambas sobre 691 candidaturas; no son nuevos folios ni árboles únicos.
