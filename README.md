@@ -1,5 +1,22 @@
 # Observatorio de Arbolado Urbano y solicitudes OIRS — Recoleta
 
+## Corte completo del 16-11-2026 y nuevas vistas (20-11-2026)
+
+**Decisión del responsable:** los datos disponibles al 16-11-2026 son **el conjunto completo del reporte vigente**. No buscar ni inventar entregas adicionales para declararlo finalizado. Si en el futuro llegan datos de OIRS, censo, inspecciones o actuaciones, incorporarlos como **otro corte versionado**, tras validación de fuentes, permisos y agregados. No se ha anunciado una fecha de nueva entrega.
+
+**Producto entregado desde los agregados existentes:** [dashboard](https://germaquintana.github.io/censoarboreo_publico/) con sección de calidad del cruce; rutas de revisión metodológica para 32 OIRS con dirección no interpretable, 122 sin candidato de árbol bajo regla ±5, y 146 con uno o más candidatos pendientes de confirmación. Estas tres clases suman 300 y **no** implican tareas asignadas, inspecciones ni autorizaciones. Adicionalmente, el censo presenta 30 **apariciones** de candidatos con condición histórica «MALO/URGENCIA» y 169 apariciones sin condición informada, ambas sobre 691 candidaturas; no son nuevos folios ni árboles únicos.
+
+**Archivos públicos del corte:**
+- [Fuente agregada JSON](data/oirs_curados.json): derivado controlado del expediente privado, corte `2026-11-16`, 300 OIRS, 25.957 registros censales, 691 apariciones de candidatos.
+- [Tabla CSV descargable](data/resumen_agregado_oirs_censo_2026-11-16.csv): 14 filas de indicadores exclusivamente agregados, con unidades, denominadores, porcentajes, fecha de corte y versión. UTF-8 con BOM y separador punto y coma para uso en Excel de configuración chilena.
+- [Dashboard HTML](index.html): indicadores, filtros de cruce, lectura de rutas de revisión, advertencias metodológicas y enlaces a las dos fuentes anteriores y a la mesa privada existente.
+
+**Control de calidad y actualización:** se conservaron intactos los valores de `data/oirs_curados.json`; verificar cuatro categorías OIRS exclusivas y suma 300; subtotales con candidato 93+53=146 y sin candidato utilizable 122+32=154; estados históricos 288+204+26+4+169=691; el CSV debe corresponder al mismo JSON. Si se produce un corte nuevo, generar un archivo CSV nuevo con fecha/versiones nuevas y actualizar el vínculo de exportación del HTML en la misma publicación; no renombrar un corte histórico ni mezclar denominadores entre OIRS y apariciones censales. Esta instrucción de procedimiento **no** autoriza copiar fuentes nominativas ni publicar datos nuevos sin revisión.
+
+**Alcance de verificación:** los cambios de código/archivos fueron comprobados mediante lectura de GitHub `main`; verificación del despliegue GitHub Pages y prueba de navegación web externa se registran aparte. Un commit no demuestra por sí solo que la nueva interfaz esté servida.
+
+---
+
 ## Arquitectura actual y producto principal — 19-11-2026
 
 **Dashboard público:** https://germaquintana.github.io/censoarboreo_publico/ — pantalla estática de análisis y filtros; consume sólo [indicadores curados](data/oirs_curados.json). **Mesa de casos restringida ya disponible:** https://docs.google.com/spreadsheets/d/1o74RdNXvu5wOoSrZlcTNHV_LaosLeKdV0iHSo7ClQ-A/edit#gid=1770532750 — requiere autorización institucional; no se replica en el dashboard público.
