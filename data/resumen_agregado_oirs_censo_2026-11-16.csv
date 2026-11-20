@@ -1,0 +1,15 @@
+﻿bloque;codigo;indicador;unidad;cantidad;denominador;porcentaje;corte;version_curaduria;alcance
+universo;oirs;Solicitudes OIRS analizadas;solicitudes;300;;;2026-11-16;v2.0;"Corte documental; no equivale a casos resueltos"
+universo;censo;Registros en el Censo Arbóreo;registros;25957;;;2026-11-16;v2.0;"Inventario censal de referencia; no evaluación vigente"
+universo;candidatos;Apariciones de candidatos arbóreos;apariciones;691;;;2026-11-16;v2.0;Puede repetirse un árbol entre solicitudes
+calidad;con_candidato;OIRS con al menos un candidato;solicitudes;146;300;48,7;2026-11-16;v2.0;Candidatura preliminar no confirmada
+calidad;sin_candidato_utilizable;OIRS sin candidatura utilizable;solicitudes;154;300;51,3;2026-11-16;v2.0;Incluye casos sin coincidencia y direcciones no interpretables
+tipo_cruce;misma_numeracion;Misma numeración;solicitudes;93;300;31,0;2026-11-16;v2.0;"Misma calle normalizada y numeración coincidente; identidad del ejemplar sin confirmar"
+tipo_cruce;proximidad_pm5;Numeración próxima (±5);solicitudes;53;300;17,7;2026-11-16;v2.0;"Misma calle normalizada y diferencia entre 1 y 5 números; identificación pendiente"
+tipo_cruce;sin_candidato_pm5;Sin coincidencia próxima;solicitudes;122;300;40,7;2026-11-16;v2.0;"Calle y numeración interpretables; ningún árbol censado dentro de ±5"
+tipo_cruce;sin_direccion_interpretable;Dirección pendiente de revisión;solicitudes;32;300;10,7;2026-11-16;v2.0;Datos de dirección insuficientes para aplicar la regla de forma fiable
+estado_censal;BUENO;Estado estructural histórico: BUENO;apariciones;288;691;41,7;2026-11-16;v2.0;"Estado censal histórico; apariciones no son ejemplares únicos"
+estado_censal;ACEPTABLE;Estado estructural histórico: ACEPTABLE;apariciones;204;691;29,5;2026-11-16;v2.0;"Estado censal histórico; apariciones no son ejemplares únicos"
+estado_censal;MALO;Estado estructural histórico: MALO;apariciones;26;691;3,8;2026-11-16;v2.0;"Estado censal histórico; apariciones no son ejemplares únicos"
+estado_censal;URGENCIA;Estado estructural histórico: URGENCIA;apariciones;4;691;0,6;2026-11-16;v2.0;"Estado censal histórico; apariciones no son ejemplares únicos"
+estado_censal;SIN DATO;Sin estado estructural;apariciones;169;691;24,5;2026-11-16;v2.0;"Estado censal histórico; apariciones no son ejemplares únicos"
